@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchCount } from './counterAPI';
 
+import {
+  changeUsername
+} from '../user/userSlice';
+
 const initialState = {
   value: 0,
   status: 'idle',
@@ -50,7 +54,10 @@ export const counterSlice = createSlice({
       .addCase(incrementAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.value += action.payload;
-      });
+      })
+      .addCase(changeUsername, (state, action) => {
+        state.value += 100;
+      })
   },
 });
 
